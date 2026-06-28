@@ -9,18 +9,9 @@ The assistant currently uses:
 - **Oxylabs** for Amazon marketplace research through `amazon_search` and product-detail enrichment through `amazon_product`.
 - **LangGraph SQLite checkpointing** for short-term thread memory.
 
-## Architecture
+## Demo
 
-The graph diagram is generated as a PNG when the backend starts:
-
-![LaunchLens LangGraph architecture](src/backend/graph_out/graph.png)
-
-If the image is missing, run the backend once and it will regenerate:
-
-```powershell
-cd "src/backend"
-python main.py --thread default-thread --db checkpoints.db
-```
+https://youtu.be/WUktWB56tJ8
 
 ## Project Structure
 
