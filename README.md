@@ -13,6 +13,28 @@ The assistant currently uses:
 
 https://youtu.be/WUktWB56tJ8
 
+## LangGraph Architecture
+
+```mermaid
+graph TD
+    START([Start]) --> summarize
+    summarize --> router
+    router -->|memory| memory
+    router -->|demand| fetch_trends
+    router -->|pricing| fetch_amazon
+    router -->|news| fetch_news
+    fetch_amazon --> fetch_amazon_products
+    fetch_trends --> research_join
+    fetch_amazon_products --> research_join
+    fetch_news --> research_join
+    research_join --> agent
+    agent -->|tool call| tools
+    tools --> agent
+    agent -->|no tool call| verdict
+    verdict --> END([End])
+    memory --> END
+```
+
 ## Project Structure
 
 ```text
