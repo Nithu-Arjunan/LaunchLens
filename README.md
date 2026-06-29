@@ -11,7 +11,8 @@ The assistant currently uses:
 
 ## Demo
 
-https://youtu.be/WUktWB56tJ8
+https://youtu.be/IE2eW6OSHE0
+
 
 ## LangGraph Architecture
 
