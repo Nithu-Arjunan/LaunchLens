@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>LaunchLens — Pitch Deck</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:      #080e1c;
+  --bg2:     #0d1527;
+  --surface: rgba(255,255,255,0.04);
+  --border:  rgba(99,102,241,0.28);
+  --border-l:rgba(255,255,255,0.08);
+  --primary: #6366f1;
+  --primary-l:#818cf8;
+  --text:    #f1f5f9;
+  --muted:   #94a3b8;
+  --go:      #22c55e;
+  --niche:   #f59e0b;
+  --nogo:    #ef4444;
+  --ff: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+
+.scene {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: var(--ff);
+  color: var(--text);
+}
+
+/* Dot-grid texture */
+.scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle,rgba(99,102,241,0.1) 1px,transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Shared tokens */
+.badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 28px; border-radius: 100px;
+  border: 1px solid var(--border);
+  background: rgba(99,102,241,0.1);
+  color: var(--primary-l);
+  font-size: 26px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+.pill {
+  display: inline-flex; align-items: center;
+  padding: 8px 24px; border-radius: 100px;
+  font-weight: 800; letter-spacing: 0.04em;
+}
+.pill.go    { font-size:28px; background:rgba(34,197,94,0.15);  color:var(--go);    border:1px solid rgba(34,197,94,0.4); }
+.pill.niche { font-size:28px; background:rgba(245,158,11,0.15); color:var(--niche); border:1px solid rgba(245,158,11,0.4); }
+.pill.nogo  { font-size:28px; background:rgba(239,68,68,0.15);  color:var(--nogo);  border:1px solid rgba(239,68,68,0.4); }
+
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--border-l);
+  border-radius: 24px;
+}
+
+.node {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 22px 36px; border-radius: 16px;
+  font-size: 32px; font-weight: 700;
+  border: 1px solid var(--border-l);
+  background: var(--bg2); white-space: nowrap;
+  text-align: center;
+}
+.node.accent {
+  border-color: var(--primary);
+  background: rgba(99,102,241,0.15);
+  color: var(--primary-l);
+}
+
+.slide-lbl {
+  position: absolute; bottom: 40px; right: 64px;
+  font-size: 24px; color: rgba(148,163,184,0.35);
+  font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  z-index: 2;
+}
+
+.glow {
+  position: absolute; border-radius: 50%;
+  pointer-events: none; z-index: 0;
+}
+</style>
+</head>
+<body style="margin:0">
+
+<!-- ═══════════════════════════════════════════════════
+     JSON ISLAND — single source of truth for slide order,
+     fragments, notes, and branching.
+     ═══════════════════════════════════════════════════ -->
+<script type="application/hyperframes-slideshow+json">
+{
+  "slides": [
+    {
+      "sceneId": "title",
+      "notes": "Open with energy. Let LaunchLens breathe. No filler."
+    },
+    {
+      "sceneId": "problem",
+      "notes": "Walk each pain point slowly — let the 42% stat land before moving on.",
+      "fragments": [11.0, 14.0]
+    },
+    {
+      "sceneId": "solution",
+      "notes": "One sentence: what it does. Keep it simple."
+    },
+    {
+      "sceneId": "pipeline",
+      "notes": "Walk through each stage — Router, Fan-out, Agent, Verdict.",
+      "fragments": [30.0, 33.0, 36.0]
+    },
+    {
+      "sceneId": "verdict-demo",
+      "notes": "The verdict card is the hero. Let GO land with impact.",
+      "fragments": [43.0, 46.0]
+    },
+    {
+      "sceneId": "techstack",
+      "notes": "Production-grade stack — not a weekend project."
+    },
+    {
+      "sceneId": "cta",
+      "notes": "End with confidence. It is live. Try it today."
+    }
+  ],
+  "slideSequences": []
+}
+</script>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 1 — TITLE
+     start=0  duration=8  end=8
+     ═══════════════════════════════════════════════════ -->
+<div
+  class="scene"
+  data-composition-id="title"
+  data-start="0"
+  data-duration="8"
+  data-label="LaunchLens"
+  data-width="1920"
+  data-height="1080"
+>
+  <div class="glow" style="width:900px;height:900px;
+    background:radial-gradient(circle,rgba(99,102,241,0.16) 0%,transparent 70%);
+    top:-250px;left:-250px"></div>
+  <div class="glow" style="width:700px;height:700px;
+    background:radial-gradient(circle,rgba(139,92,246,0.12) 0%,transparent 70%);
+    bottom:-150px;right:100px"></div>
+
+  <section class="clip" data-start="0" data-duration="8" data-track-index="1"
+    style="position:absolute;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:44px;z-index:1">
+
+    <!-- Lens icon (pure CSS) -->
+    <div id="t-icon" style="opacity:0;width:110px;height:110px;position:relative;flex-shrink:0">
+      <div style="position:absolute;inset:0;border-radius:50%;
+        border:6px solid #6366f1;
+        box-shadow:0 0 48px rgba(99,102,241,0.55),inset 0 0 32px rgba(99,102,241,0.1)"></div>
+      <div style="position:absolute;bottom:6px;right:6px;width:34px;height:7px;
+        background:#6366f1;border-radius:4px;
+        transform:rotate(45deg);transform-origin:right center;
+        box-shadow:0 0 14px rgba(99,102,241,0.9)"></div>
+    </div>
+
+    <h1 id="t-brand" style="opacity:0;font-size:128px;font-weight:900;
+      letter-spacing:-4px;line-height:1;
+      background:linear-gradient(140deg,#ffffff 30%,#6366f1 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text">
+      LaunchLens
+    </h1>
+
+    <p id="t-tagline" style="opacity:0;font-size:52px;color:var(--muted);
+      font-weight:400;text-align:center;max-width:960px;line-height:1.35">
+      AI market research that tells you&nbsp;
+      <strong style="color:var(--text)">Go, Niche, or No-Go</strong>
+      &nbsp;in seconds
+    </p>
+
+    <div id="t-badge" style="opacity:0;margin-top:12px">
+      <span class="badge">🔍&nbsp; Powered by LangGraph + OpenAI</span>
+    </div>
+  </section>
+
+  <span class="slide-lbl">LaunchLens · Demo 2026</span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 2 — PROBLEM
+     start=8  duration=11  end=19
+     fragments=[11, 14]
+     ═══════════════════════════════════════════════════ -->
+<div
+  class="scene"
+  data-composition-id="problem"
+  data-start="8"
+  data-duration="11"
+  data-label="The problem"
+  data-width="1920"
+  data-height="1080"
+>
+  <section class="clip" data-start="8" data-duration="11" data-track-index="1"
+    style="position:absolute;inset:0;z-index:1;display:grid;
+      grid-template-columns:1fr 1fr;align-items:center;
+      gap:80px;padding:96px 120px">
+
+    <!-- Left: headline + pain points -->
+    <div style="display:flex;flex-direction:column;gap:52px">
+
+      <div id="p-headline" style="opacity:0;display:flex;flex-direction:column;gap:28px">
+        <span class="badge">The Problem</span>
+        <h2 style="font-size:72px;font-weight:800;line-height:1.1;letter-spacing:-1px">
+          Founders fly blind when validating product ideas
+        </h2>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:30px">
+        <div id="p-pain1" style="opacity:0;display:flex;align-items:flex-start;gap:22px">
+          <div style="width:12px;height:12px;border-radius:50%;background:var(--nogo);
+            margin-top:20px;flex-shrink:0;box-shadow:0 0 10px rgba(239,68,68,0.6)"></div>
+          <p style="font-size:44px;color:var(--muted);line-height:1.3">
+            Manual research takes
+            <strong style="color:var(--text)">40+ hours</strong> per idea
+          </p>
+        </div>
+        <div id="p-pain2" style="opacity:0;display:flex;align-items:flex-start;gap:22px">
+          <div style="width:12px;height:12px;border-radius:50%;background:var(--nogo);
+            margin-top:20px;flex-shrink:0;box-shadow:0 0 10px rgba(239,68,68,0.6)"></div>
+          <p style="font-size:44px;color:var(--muted);line-height:1.3">
+            <strong style="color:var(--text)">42% of startups</strong>
+            fail due to no market need
+          </p>
+        </div>
+        <div id="p-pain3" style="opacity:0;display:flex;align-items:flex-start;gap:22px">
+          <div style="width:12px;height:12px;border-radius:50%;background:var(--nogo);
+            margin-top:20px;flex-shrink:0;box-shadow:0 0 10px rgba(239,68,68,0.6)"></div>
+          <p style="font-size:44px;color:var(--muted);line-height:1.3">
+            Research is scattered across
+            <strong style="color:var(--text)">5+ tools</strong> with no synthesis
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: "chaos" card -->
+    <div id="p-visual" style="opacity:0">
+      <div class="glass" style="padding:56px;display:flex;flex-direction:column;gap:20px">
+        <p style="font-size:28px;color:var(--muted);font-weight:600;
+          text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">
+          A founder's typical process
+        </p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:20px">
+            <div style="width:40px;height:40px;border-radius:50%;flex-shrink:0;
+              background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+              display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--nogo)">✕</div>
+            <span style="font-size:34px;color:var(--muted);text-decoration:line-through">Google Trends tab open</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:20px">
+            <div style="width:40px;height:40px;border-radius:50%;flex-shrink:0;
+              background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+              display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--nogo)">✕</div>
+            <span style="font-size:34px;color:var(--muted);text-decoration:line-through">Amazon results browser</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:20px">
+            <div style="width:40px;height:40px;border-radius:50%;flex-shrink:0;
+              background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+              display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--nogo)">✕</div>
+            <span style="font-size:34px;color:var(--muted);text-decoration:line-through">News articles to skim</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:20px">
+            <div style="width:40px;height:40px;border-radius:50%;flex-shrink:0;
+              background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+              display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--nogo)">✕</div>
+            <span style="font-size:34px;color:var(--muted);text-decoration:line-through">Spreadsheet with guesses</span>
+          </div>
+          <div style="height:1px;background:var(--border-l);margin:8px 0"></div>
+          <div style="display:flex;align-items:center;gap:18px">
+            <span style="font-size:48px">😤</span>
+            <span style="font-size:38px;color:var(--text);font-weight:700">Still no clear answer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <span class="slide-lbl">01 / Problem</span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 3 — SOLUTION
+     start=19  duration=8  end=27
+     ═══════════════════════════════════════════════════ -->
+<div
+  class="scene"
+  data-composition-id="solution"
+  data-start="19"
+  data-duration="8"
+  data-label="The solution"
+  data-width="1920"
+  data-height="1080"
+>
+  <div class="glow" style="width:1100px;height:700px;
+    background:radial-gradient(ellipse,rgba(99,102,241,0.14) 0%,transparent 70%);
+    top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+
+  <section class="clip" data-start="19" data-duration="8" data-track-index="1"
+    style="position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:60px;padding:80px">
+
+    <div id="s-badge" style="opacity:0">
+      <span class="badge">The Solution</span>
+    </div>
+
+    <div id="s-headline" style="opacity:0;text-align:center;max-width:1500px">
+      <h2 style="font-size:88px;font-weight:800;line-height:1.1;letter-spacing:-2px">
+        LaunchLens researches any product idea automatically —<br>
+        <span style="background:linear-gradient(135deg,#6366f1,#a78bfa);
+          -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+          so you can focus on building
+        </span>
+      </h2>
+    </div>
+
+    <!-- Input → Output strip -->
+    <div id="s-flow" style="opacity:0;display:flex;align-items:center;gap:36px">
+      <div class="glass" style="padding:28px 48px;font-size:38px;color:var(--muted);
+        border-radius:16px;max-width:680px;line-height:1.3">
+        "Can I launch eco-friendly lunch boxes in India?"
+      </div>
+      <div style="font-size:56px;color:var(--primary);font-weight:300">→</div>
+      <div style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.35);
+        border-radius:16px;padding:28px 48px;font-size:44px;font-weight:800;color:var(--go)">
+        GO &nbsp;·&nbsp; High Confidence
+      </div>
+    </div>
+  </section>
+
+  <span class="slide-lbl">02 / Solution</span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 4 — PIPELINE / HOW IT WORKS
+     start=27  duration=13  end=40
+     fragments=[30, 33, 36]
+     ═══════════════════════════════════════════════════ -->
+<div
+  class="scene"
+  data-composition-id="pipeline"
+  data-start="27"
+  data-duration="13"
+  data-label="How it works"
+  data-width="1920"
+  data-height="1080"
+>
+  <section class="clip" data-start="27" data-duration="13" data-track-index="1"
+    style="position:absolute;inset:0;z-index:1;padding:72px 100px;
+      display:flex;flex-direction:column;gap:60px">
+
+    <div id="pl-header" style="opacity:0;display:flex;flex-direction:column;gap:20px">
+      <span class="badge">How It Works</span>
+      <h2 style="font-size:62px;font-weight:800;letter-spacing:-1px;max-width:1100px;line-height:1.1">
+        A LangGraph agent fans out to three data sources simultaneously
+      </h2>
+    </div>
+
+    <!-- Pipeline row -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex:1;
+      padding-bottom:40px">
+
+      <!-- Stage 1: Question -->
+      <div id="pl-s1" style="opacity:0">
+        <div class="node accent" style="font-size:30px;gap:12px;padding:28px 44px">
+          <span style="font-size:44px">💬</span>
+          Founder<br>Question
+        </div>
+      </div>
+
+      <div id="pl-a1" style="opacity:0;font-size:44px;color:var(--muted);font-weight:200">→</div>
+
+      <!-- Stage 2: Router + Summarize -->
+      <div id="pl-s2" style="opacity:0;display:flex;flex-direction:column;gap:16px">
+        <div class="node" style="font-size:30px;gap:10px">
+          <span style="font-size:36px">🔀</span>Router
+        </div>
+        <div class="node" style="font-size:28px;gap:10px;border-style:dashed;color:var(--muted)">
+          <span style="font-size:32px">📝</span>Summarize
+        </div>
+      </div>
+
+      <div id="pl-a2" style="opacity:0;font-size:44px;color:var(--muted);font-weight:200">→</div>
+
+      <!-- Stage 3: Fan-out sources -->
+      <div id="pl-s3" style="opacity:0;display:flex;flex-direction:column;gap:14px">
+        <div class="node" style="font-size:28px;gap:10px;
+          background:rgba(34,197,94,0.07);border-color:rgba(34,197,94,0.3)">
+          <span style="font-size:34px">📈</span>Google Trends
+        </div>
+        <div class="node" style="font-size:28px;gap:10px;
+          background:rgba(245,158,11,0.07);border-color:rgba(245,158,11,0.3)">
+          <span style="font-size:34px">🛒</span>Amazon Search
+        </div>
+        <div class="node" style="font-size:28px;gap:10px;
+          background:rgba(99,102,241,0.07);border-color:rgba(99,102,241,0.3)">
+          <span style="font-size:34px">📰</span>Google News
+        </div>
+        <p style="text-align:center;font-size:22px;color:var(--muted);
+          font-weight:700;letter-spacing:0.08em;margin-top:6px">← PARALLEL →</p>
+      </div>
+
+      <div id="pl-a3" style="opacity:0;font-size:44px;color:var(--muted);font-weight:200">→</div>
+
+      <!-- Stage 4: Agent + Tools -->
+      <div id="pl-s4" style="opacity:0;display:flex;flex-direction:column;gap:16px">
+        <div class="node" style="font-size:30px;gap:10px">
+          <span style="font-size:36px">🤖</span>
+          Agent<br>
+          <span style="font-size:22px;color:var(--muted);font-weight:400">(ReAct loop)</span>
+        </div>
+        <div class="node" style="font-size:28px;gap:10px;border-style:dashed;color:var(--muted)">
+          <span style="font-size:32px">🔧</span>Tools
+        </div>
+      </div>
+
+      <div id="pl-a4" style="opacity:0;font-size:44px;color:var(--muted);font-weight:200">→</div>
+
+      <!-- Stage 5: Verdict -->
+      <div id="pl-s5" style="opacity:0">
+        <div class="node accent" style="gap:16px;padding:28px 44px">
+          <span style="font-size:44px">⚖️</span>
+          Verdict
+          <div style="display:flex;gap:10px;margin-top:4px">
+            <span class="pill go"   style="font-size:22px;padding:6px 18px">GO</span>
+            <span class="pill niche" style="font-size:22px;padding:6px 18px">NICHE</span>
+            <span class="pill nogo" style="font-size:22px;padding:6px 18px">NO-GO</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <span class="slide-lbl">03 / How It Works</span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 5 — VERDICT DEMO
+     start=40  duration=10  end=50
+     fragments=[43, 46]
+     ═══════════════════════════════════════════════════ -->
+<div
+  class="scene"
+  data-composition-id="verdict-demo"
+  data-start="40"
+  data-duration="10"
+  data-label="The verdict"
+  data-width="1920"
+  data-height="1080"
+>
+  <section class="clip" data-start="40" data-duration="10" data-track-index="1"
+    style="position:absolute;inset:0;z-index:1;display:grid;
+      grid-template-columns:1fr 1.15fr;gap:80px;
+      align-items:center;padding:80px 120px">
+
+    <!-- Left: copy -->
+    <div id="vd-left" style="opacity:0;display:flex;flex-direction:column;gap:44px">
+      <span class="badge">The Verdict</span>
+      <h2 style="font-size:68px;font-weight:800;line-height:1.1;letter-spacing:-1px">
+        Every session ends with a structured, evidence-backed decision
+      </h2>
+      <p style="font-size:38px;color:var(--muted);line-height:1.5">
+        Not a summary. Not raw data.<br>
+        A clear <strong style="color:var(--text)">GO, NICHE, or NO-GO</strong><br>
+        with reasoning and confidence.
+      </p>
+    </div>
+
+    <!-- Right: verdict card -->
+    <div class="glass" style="padding:52px;display:flex;flex-direction:column;gap:32px">
+
+      <div style="font-size:28px;color:var(--muted);
+        border-bottom:1px solid var(--border-l);padding-bottom:24px">
+        Query:&nbsp;<span style="color:var(--text)">"eco-friendly lunch boxes in India"</span>
+      </div>
+
+      <div id="vd-decision" style="opacity:0;display:flex;align-items:center;gap:24px">
+        <span class="pill go" style="font-size:38px;padding:16px 40px">✓ &nbsp;GO</span>
+        <span style="font-size:30px;color:var(--muted)">·</span>
+        <span style="font-size:34px;color:var(--text);font-weight:700">High Confidence</span>
+      </div>
+
+      <div id="vd-details" style="opacity:0;display:flex;flex-direction:column;gap:24px">
+        <p style="font-size:30px;color:var(--muted);line-height:1.6;
+          border-left:4px solid var(--go);padding-left:20px">
+          Strong demand signal on Google Trends, multiple Amazon competitors
+          with healthy ratings, and supportive news coverage confirm a growing
+          market with room for a differentiated entry.
+        </p>
+        <div>
+          <p style="font-size:24px;color:var(--muted);font-weight:700;
+            text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px">
+            Key Factors
+          </p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:16px;font-size:30px">
+              <span style="color:var(--go);font-weight:700;font-size:26px">↑</span>
+              Google Trends avg. interest 72/100 over 12 months
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;font-size:30px">
+              <span style="color:var(--go);font-weight:700;font-size:26px">↑</span>
+              Amazon.in shows 40+ listings, avg. ★4.2
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;font-size:30px">
+              <span style="color:var(--go);font-weight:700;font-size:26px">↑</span>
+              18 recent news articles signal rising consumer adoption
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <span class="slide-lbl">04 / The Verdict</span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 6 — TECH STACK
+     start=50  duration=8  end=58
+     ═══════════════════════════════════════════════════ -->
+<div
+  class="scene"
+  data-composition-id="techstack"
+  data-start="50"
+  data-duration="8"
+  data-label="Tech stack"
+  data-width="1920"
+  data-height="1080"
+>
+  <section class="clip" data-start="50" data-duration="8" data-track-index="1"
+    style="position:absolute;inset:0;z-index:1;padding:72px 120px;
+      display:flex;flex-direction:column;gap:60px">
+
+    <div id="ts-header" style="opacity:0;display:flex;flex-direction:column;gap:20px">
+      <span class="badge">The Stack</span>
+      <h2 style="font-size:64px;font-weight:800;letter-spacing:-1px;max-width:1200px;line-height:1.1">
+        Production-grade AI infrastructure — not a weekend prototype
+      </h2>
+    </div>
+
+    <div id="ts-grid" style="opacity:0;display:grid;
+      grid-template-columns:repeat(4,1fr);gap:32px;flex:1">
+
+      <div class="glass" style="padding:44px;display:flex;flex-direction:column;gap:20px">
+        <span style="font-size:52px">🕸️</span>
+        <div style="font-size:40px;font-weight:700;color:var(--primary-l)">LangGraph</div>
+        <p style="font-size:29px;color:var(--muted);line-height:1.45">
+          Stateful agent graph with parallel fan-out and SQLite thread memory
+        </p>
+      </div>
+
+      <div class="glass" style="padding:44px;display:flex;flex-direction:column;gap:20px">
+        <span style="font-size:52px">🧠</span>
+        <div style="font-size:40px;font-weight:700;color:var(--primary-l)">OpenAI GPT-4o</div>
+        <p style="font-size:29px;color:var(--muted);line-height:1.45">
+          Routing, summarisation, agent reasoning, and structured verdict generation
+        </p>
+      </div>
+
+      <div class="glass" style="padding:44px;display:flex;flex-direction:column;gap:20px">
+        <span style="font-size:52px">📊</span>
+        <div style="font-size:40px;font-weight:700;color:var(--primary-l)">SerpApi</div>
+        <p style="font-size:29px;color:var(--muted);line-height:1.45">
+          Real-time Google Trends demand signals and Google News market context
+        </p>
+      </div>
+
+      <div class="glass" style="padding:44px;display:flex;flex-direction:column;gap:20px">
+        <span style="font-size:52px">🛒</span>
+        <div style="font-size:40px;font-weight:700;color:var(--primary-l)">Oxylabs</div>
+        <p style="font-size:29px;color:var(--muted);line-height:1.45">
+          Amazon marketplace scraping — listings, competitor pricing, and product detail
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <span class="slide-lbl">05 / Stack</span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 7 — CTA
+     start=58  duration=7  end=65
+     ═══════════════════════════════════════════════════ -->
+<div
+  class="scene"
+  data-composition-id="cta"
+  data-start="58"
+  data-duration="7"
+  data-label="Try LaunchLens"
+  data-width="1920"
+  data-height="1080"
+>
+  <div class="glow" style="width:1300px;height:900px;
+    background:radial-gradient(ellipse,rgba(99,102,241,0.16) 0%,transparent 70%);
+    top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+
+  <section class="clip" data-start="58" data-duration="7" data-track-index="1"
+    style="position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:52px">
+
+    <h3 id="cta-brand" style="opacity:0;font-size:48px;font-weight:900;
+      letter-spacing:-1px;
+      background:linear-gradient(140deg,#ffffff 40%,#6366f1);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text">
+      LaunchLens
+    </h3>
+
+    <h2 id="cta-headline" style="opacity:0;font-size:88px;font-weight:800;
+      letter-spacing:-2px;line-height:1.1;text-align:center;max-width:1300px">
+      LaunchLens is live — try it<br>with your next product idea
+    </h2>
+
+    <div id="cta-pills" style="opacity:0;display:flex;gap:28px">
+      <span class="pill go"    style="font-size:34px;padding:18px 48px">GO</span>
+      <span class="pill niche" style="font-size:34px;padding:18px 48px">NICHE</span>
+      <span class="pill nogo"  style="font-size:34px;padding:18px 48px">NO-GO</span>
+    </div>
+
+    <div id="cta-link" style="opacity:0">
+      <div class="glass" style="padding:28px 64px;display:flex;align-items:center;gap:20px;
+        border-radius:20px">
+        <span style="font-size:38px">⭐</span>
+        <span style="font-size:38px;font-weight:600;color:var(--text)">
+          github.com/LaunchLens
+        </span>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     GSAP TIMELINES
+     All timelines registered on window.__timelines and PAUSED.
+     HyperFrames engine drives seek — never call .play() here.
+     All insert positions are absolute composition-timeline times.
+     ═══════════════════════════════════════════════════ -->
+<script>
+window.__timelines = window.__timelines || {};
+
+// ── SLIDE 1: title (scene start=0) ──────────────────────────
+(function () {
+  var tl = gsap.timeline({ paused: true });
+  window.__timelines['title'] = tl;
+  tl.from('#t-icon',    { opacity:0, scale:0.4, duration:0.7, ease:'back.out(2)' },    0.2);
+  tl.from('#t-brand',   { opacity:0, y:50,      duration:0.8, ease:'power3.out' },     0.7);
+  tl.from('#t-tagline', { opacity:0, y:30,      duration:0.7, ease:'power2.out' },     1.35);
+  tl.from('#t-badge',   { opacity:0, y:20,      duration:0.5, ease:'power2.out' },     1.9);
+}());
+
+// ── SLIDE 2: problem (scene start=8, fragments=11,14) ────────
+(function () {
+  var tl = gsap.timeline({ paused: true });
+  window.__timelines['problem'] = tl;
+  // Scene enters → headline + card
+  tl.from('#p-headline', { opacity:0, x:-40, duration:0.7, ease:'power3.out' },  8.3);
+  tl.from('#p-visual',   { opacity:0, x: 40, duration:0.7, ease:'power3.out' },  8.6);
+  // Fragment 1 @ 11 — pain point 1
+  tl.from('#p-pain1', { opacity:0, x:-28, duration:0.5, ease:'power2.out' }, 11.0);
+  // Fragment 2 @ 14 — pain points 2 + 3
+  tl.from('#p-pain2', { opacity:0, x:-28, duration:0.5, ease:'power2.out' }, 14.0);
+  tl.from('#p-pain3', { opacity:0, x:-28, duration:0.5, ease:'power2.out' }, 14.5);
+}());
+
+// ── SLIDE 3: solution (scene start=19) ──────────────────────
+(function () {
+  var tl = gsap.timeline({ paused: true });
+  window.__timelines['solution'] = tl;
+  tl.from('#s-badge',    { opacity:0, y:-20, duration:0.5, ease:'power2.out' }, 19.3);
+  tl.from('#s-headline', { opacity:0, y: 36, duration:0.8, ease:'power3.out' }, 19.8);
+  tl.from('#s-flow',     { opacity:0, y: 24, duration:0.6, ease:'power2.out' }, 20.7);
+}());
+
+// ── SLIDE 4: pipeline (scene start=27, fragments=30,33,36) ───
+(function () {
+  var tl = gsap.timeline({ paused: true });
+  window.__timelines['pipeline'] = tl;
+  tl.from('#pl-header', { opacity:0, y:-20, duration:0.6, ease:'power2.out' }, 27.3);
+  // Fragment 1 @ 30 — question + router
+  tl.from('#pl-s1', { opacity:0, x:-30, duration:0.5, ease:'power2.out' }, 30.0);
+  tl.from('#pl-a1', { opacity:0,         duration:0.3, ease:'power1.out' }, 30.45);
+  tl.from('#pl-s2', { opacity:0, x:-20, duration:0.5, ease:'power2.out' }, 30.65);
+  // Fragment 2 @ 33 — fan-out sources
+  tl.from('#pl-a2', { opacity:0,         duration:0.3, ease:'power1.out' }, 33.0);
+  tl.from('#pl-s3', { opacity:0, scale:0.88, duration:0.55, ease:'back.out(1.4)' }, 33.3);
+  // Fragment 3 @ 36 — agent + verdict
+  tl.from('#pl-a3', { opacity:0,         duration:0.3, ease:'power1.out' }, 36.0);
+  tl.from('#pl-s4', { opacity:0, x:-20, duration:0.5, ease:'power2.out' }, 36.3);
+  tl.from('#pl-a4', { opacity:0,         duration:0.3, ease:'power1.out' }, 36.75);
+  tl.from('#pl-s5', { opacity:0, scale:0.88, duration:0.65, ease:'back.out(1.8)' }, 36.95);
+}());
+
+// ── SLIDE 5: verdict-demo (scene start=40, fragments=43,46) ──
+(function () {
+  var tl = gsap.timeline({ paused: true });
+  window.__timelines['verdict-demo'] = tl;
+  tl.from('#vd-left',     { opacity:0, x:-40, duration:0.7, ease:'power3.out' }, 40.3);
+  // Fragment 1 @ 43 — verdict badge
+  tl.from('#vd-decision', { opacity:0, scale:0.75, duration:0.55, ease:'back.out(2.2)' }, 43.0);
+  // Fragment 2 @ 46 — reasoning + key factors
+  tl.from('#vd-details',  { opacity:0, y:20,   duration:0.55, ease:'power2.out' }, 46.0);
+}());
+
+// ── SLIDE 6: techstack (scene start=50) ─────────────────────
+(function () {
+  var tl = gsap.timeline({ paused: true });
+  window.__timelines['techstack'] = tl;
+  tl.from('#ts-header', { opacity:0, y:-20, duration:0.6, ease:'power2.out' }, 50.3);
+  tl.from('#ts-grid',   { opacity:0, y: 32, duration:0.7, ease:'power2.out' }, 51.0);
+}());
+
+// ── SLIDE 7: cta (scene start=58) ───────────────────────────
+(function () {
+  var tl = gsap.timeline({ paused: true });
+  window.__timelines['cta'] = tl;
+  tl.from('#cta-brand',   { opacity:0, y:-20,      duration:0.5, ease:'power2.out' }, 58.3);
+  tl.from('#cta-headline',{ opacity:0, y: 36,      duration:0.8, ease:'power3.out' }, 58.8);
+  tl.from('#cta-pills',   { opacity:0, scale:0.88, duration:0.6, ease:'back.out(1.6)' }, 59.7);
+  tl.from('#cta-link',    { opacity:0, y: 20,      duration:0.5, ease:'power2.out' }, 60.4);
+}());
+</script>
+
+</body>
+</html>

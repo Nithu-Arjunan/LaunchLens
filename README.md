@@ -13,6 +13,13 @@ The assistant currently uses:
 
 https://youtu.be/IE2eW6OSHE0
 
+## Pitch Deck
+
+![LaunchLens pitch deck cover](pitch/slides_png/slide_01.png)
+
+[View the pitch deck PDF](pitch/LaunchLens_pitch_deck.pdf)
+
+[Download the PowerPoint deck](pitch/LaunchLens_pitch_deck.pptx)
 
 ## LangGraph Architecture
 
