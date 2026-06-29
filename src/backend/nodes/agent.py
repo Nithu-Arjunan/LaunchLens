@@ -14,18 +14,6 @@ logger = logging.getLogger(__name__)
 def _messages_safe_for_openai(messages: list) -> list:
     """Remove messages that would cause an OpenAI 400 error.
 
-    OpenAI's rule: every AI message with tool_calls must be IMMEDIATELY
-    followed by tool messages answering ALL of its tool_call_ids — no gaps,
-    no partial groups.  Two failure modes are handled:
-
-    - AI tool-call message whose responses are missing or not immediately
-      adjacent (e.g. a partially-completed turn restored from a checkpoint).
-      The entire group (AI message + any adjacent tool responses) is dropped.
-    - Orphan tool-response message with no preceding AI tool-call request
-      (its request was compressed away by the summarizer). Dropped individually.
-
-    The algorithm is sequential: consume one valid group at a time so that
-    order is preserved and adjacency is enforced.
     """
     safe: list = []
     i = 0
