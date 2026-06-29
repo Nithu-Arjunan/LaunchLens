@@ -12,8 +12,8 @@ logger = logging.getLogger(__name__)
 
 
 def _messages_safe_for_openai(messages: list) -> list:
-    """Remove messages that would cause an OpenAI 400 error.
-
+    """
+    Remove messages that would cause an OpenAI 400 error.
     """
     safe: list = []
     i = 0
