@@ -11,7 +11,7 @@ The assistant currently uses:
 
 ## Demo
 
-https://youtu.be/IE2eW6OSHE0
+https://youtu.be/YC-AyrjEYik
 
 ## Pitch Deck
 
