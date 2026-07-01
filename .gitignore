@@ -51,6 +51,7 @@ pnpm-debug.log*
 .claude/
 .codex/
 .agents/
+.playwright-mcp/
 .vscode/
 .idea/
 *.swp

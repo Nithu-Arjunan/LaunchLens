@@ -71,17 +71,26 @@ def _message_content(message: Any) -> str:
     return str(getattr(message, "content", "") or "")
 
 
-def _ai_messages(result: dict[str, Any]) -> list[Any]:
-    return [message for message in result.get("messages", []) if getattr(message, "type", None) == "ai"]
+def _current_turn_messages(result: dict[str, Any]) -> list[Any]:
+    messages = result.get("messages", [])
+    for index in range(len(messages) - 1, -1, -1):
+        if getattr(messages[index], "type", None) == "human":
+            return messages[index:]
+    return messages
+
+
+def _ai_messages(result: dict[str, Any], *, current_turn_only: bool = False) -> list[Any]:
+    messages = _current_turn_messages(result) if current_turn_only else result.get("messages", [])
+    return [message for message in messages if getattr(message, "type", None) == "ai"]
 
 
 def _latest_answer(result: dict[str, Any]) -> str:
-    messages = _ai_messages(result)
+    messages = _ai_messages(result, current_turn_only=True)
     return _message_content(messages[-1]) if messages else ""
 
 
 def _agent_answer(result: dict[str, Any]) -> str:
-    messages = _ai_messages(result)
+    messages = _ai_messages(result, current_turn_only=True)
     if not messages:
         return ""
     if result.get("verdict") and len(messages) >= 2:
@@ -92,7 +101,7 @@ def _agent_answer(result: dict[str, Any]) -> str:
 def _token_usage_from_messages(result: dict[str, Any]) -> dict[str, int | None]:
     prompt = completion = total = 0
     found = False
-    for message in _ai_messages(result):
+    for message in _ai_messages(result, current_turn_only=True):
         usage = getattr(message, "usage_metadata", None) or {}
         response_metadata = getattr(message, "response_metadata", None) or {}
         token_usage = response_metadata.get("token_usage") or {}
@@ -141,7 +150,18 @@ def _execution_path(result: dict[str, Any]) -> list[str]:
     return path
 
 
-def _fanout(result: dict[str, Any]) -> dict[str, Any]:
+def _empty_fanout() -> dict[str, Any]:
+    return {
+        "trends": None,
+        "amazon_search": None,
+        "amazon_products": None,
+        "news": None,
+    }
+
+
+def _fanout(result: dict[str, Any], *, include_research: bool = True) -> dict[str, Any]:
+    if not include_research:
+        return _empty_fanout()
     return {
         "trends": result.get("trends_result"),
         "amazon_search": result.get("amazon_result"),
@@ -190,6 +210,8 @@ def run_graph(request: RunRequest) -> RunResponse:
 
     latency_ms = round((time.perf_counter() - start) * 1000)
     summary = result.get("summary")
+    is_memory_route = result.get("route") == "memory"
+    current_turn_ai_messages = _ai_messages(result, current_turn_only=True)
 
     return RunResponse(
         thread_id=request.thread_id,
@@ -198,23 +220,23 @@ def run_graph(request: RunRequest) -> RunResponse:
         path=_execution_path(result),
         route=result.get("route"),
         route_reason=result.get("route_reason"),
-        search_query=result.get("search_query"),
-        target_region=result.get("target_region"),
+        search_query=None if is_memory_route else result.get("search_query"),
+        target_region=None if is_memory_route else result.get("target_region"),
         checkpoint=_checkpoint_info(result, request.thread_id, db_path),
         summarization={
             "summary": summary,
             "summary_chars": len(summary or ""),
             "enabled": bool(summary),
         },
-        fanout=_fanout(result),
+        fanout=_fanout(result, include_research=not is_memory_route),
         agent={
             "answer": _agent_answer(result),
             "tool_calls": sum(
                 len(getattr(message, "tool_calls", []) or [])
-                for message in _ai_messages(result)
+                for message in current_turn_ai_messages
             ),
         },
-        verdict=result.get("verdict"),
+        verdict=None if is_memory_route else result.get("verdict"),
         metrics={
             "latency_ms": latency_ms,
             "tokens": _token_usage_from_messages(result),

@@ -53,7 +53,18 @@ function PathStrip({ path }) {
   );
 }
 
-function VerdictCard({ verdict }) {
+function VerdictCard({ verdict, route, memoryAnswer }) {
+  if (route === "memory") {
+    return (
+      <section className="verdict-card">
+        <div className="verdict-kicker">Memory Answer</div>
+        <div className="decision decision-memory">Memory</div>
+        <div className="confidence">Thread context</div>
+        <p>{memoryAnswer || "No prior product research was found for this thread."}</p>
+      </section>
+    );
+  }
+
   const decision = verdict?.decision || "Waiting";
   return (
     <section className="verdict-card">
@@ -175,7 +186,11 @@ function App() {
         </div>
 
         <div className="center-column">
-          <VerdictCard verdict={result.verdict} />
+          <VerdictCard
+            verdict={result.verdict}
+            route={result.route}
+            memoryAnswer={result.agent?.answer || result.answer}
+          />
           <Panel title="Agent Node" icon={<Sparkles size={18} />}>
             <p className="agent-answer">{result.agent?.answer || "No agent output yet."}</p>
             <div className="subtle">Tool calls: {result.agent?.tool_calls ?? 0}</div>

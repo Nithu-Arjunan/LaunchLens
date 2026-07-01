@@ -242,6 +242,7 @@ dd {
   color: #2f394c;
   line-height: 1.55;
   overflow-wrap: anywhere;
+  white-space: pre-line;
 }
 
 .subtle {
@@ -289,6 +290,10 @@ dd {
   color: #b42318;
 }
 
+.decision-memory {
+  color: #2f73d8;
+}
+
 .confidence {
   margin-top: 10px;
   border: 1px solid #dfe4ec;
@@ -304,6 +309,7 @@ dd {
   margin: 18px auto 0;
   color: #38445a;
   line-height: 1.56;
+  white-space: pre-line;
 }
 
 .factors {
